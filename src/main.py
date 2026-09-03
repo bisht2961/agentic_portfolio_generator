@@ -1,3 +1,11 @@
+import sys
+from pathlib import Path
+
+# Ensure the project root directory is in sys.path when executed directly
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import json
 import asyncio
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
@@ -6,8 +14,8 @@ from sse_starlette.sse import EventSourceResponse
 from dotenv import load_dotenv
 from typing import Optional
 
-from schemas import FinalPortfolioPayload
-from agents import (
+from src.schema.schemas import FinalPortfolioPayload
+from src.agents.agents import (
     IngestionAgent,
     StorytellerAgent,
     DesignLayoutAgent,
@@ -126,4 +134,4 @@ async def generate_portfolio_stream(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)
