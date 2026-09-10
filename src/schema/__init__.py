@@ -4,6 +4,7 @@ from src.schema.schemas import (
     RawParsedData,
     EnrichedContent,
     ThemeConfig,
+    GeneratedPortfolio,
     FinalPortfolioPayload,
 )
 
@@ -13,6 +14,7 @@ __all__ = [
     "RawParsedData",
     "EnrichedContent",
     "ThemeConfig",
+    "GeneratedPortfolio",
     "FinalPortfolioPayload",
 ]
 

@@ -46,6 +46,11 @@ class ThemeConfig(BaseModel):
         default_factory=lambda: ["hero", "projects", "experience", "skills", "contact"]
     )
 
+class GeneratedPortfolio(BaseModel):
+    """Output from Portfolio Generator Agent"""
+    html_code: str = Field(description="Complete, valid, semantic HTML5 markup for the portfolio website")
+    css_code: str = Field(description="Modern, responsive CSS stylesheet matching the design theme, palette, and layout")
+
 class FinalPortfolioPayload(BaseModel):
     """Final verified response from Reviewer Agent"""
     full_name: str
@@ -56,3 +61,9 @@ class FinalPortfolioPayload(BaseModel):
     projects: List[ProjectItem]
     experience: List[ExperienceItem]
     seo_keywords: List[str]
+    html_code: str = Field(description="Production-ready, valid, semantic HTML code for the portfolio")
+    css_code: str = Field(description="Responsive, polished CSS styling matching the design theme and layout")
+    review_notes: Optional[str] = Field(
+        default=None,
+        description="QA review audit feedback or validation notes"
+    )

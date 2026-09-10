@@ -14,7 +14,12 @@ class Settings(BaseSettings):
     ingestion_model: str = "google/gemini-2.0-flash-001"
     storyteller_model: str = "anthropic/claude-3.5-sonnet"
     design_model: str = "openai/gpt-4o-mini"
+    generator_model: str = "anthropic/claude-3.5-sonnet"
     reviewer_model: str = "meta-llama/llama-3.3-70b-instruct"
+
+    # Logging Configuration
+    log_level: str = "INFO"
+    log_file: str = "logs/app.log"
 
     model_config = SettingsConfigDict(
         env_file=".env",
