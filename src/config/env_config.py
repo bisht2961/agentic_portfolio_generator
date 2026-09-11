@@ -21,6 +21,12 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     log_file: str = "logs/app.log"
 
+    # Token and Reasoning Controls
+    reasoning_effort: str = "low"  # "low", "medium", "high" for reasoning models
+    default_max_tokens: int = 4000
+    generator_max_tokens: int = 8000
+    reviewer_max_tokens: int = 8000
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

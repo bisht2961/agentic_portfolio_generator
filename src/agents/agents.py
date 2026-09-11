@@ -53,10 +53,15 @@ class IngestionAgent:
                 model=settings.ingestion_model,
                 system_prompt=(
                     "You are an expert Data Ingestion Agent. Extract candidate profile data "
-                    "from the resume text into the required structured schema accurately."
+                    "from the resume text into the required structured schema accurately and concisely.\n"
+                    "- Extract ONLY factual information present in the resume text.\n"
+                    "- Do NOT invent, hallucinate, or duplicate work experiences, projects, or skills.\n"
+                    "- Group bullet points by distinct jobs/companies rather than splitting each bullet into a separate experience.\n"
+                    "- Keep entries clean, distinct, and directly derived from the input."
                 ),
                 user_prompt=f"Resume Text:\n\n{raw_text}",
                 response_model=RawParsedData,
+                max_tokens=settings.default_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(
@@ -104,6 +109,7 @@ class StorytellerAgent:
                 user_prompt=user_prompt,
                 response_model=EnrichedContent,
                 temperature=0.4,
+                max_tokens=settings.default_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(
@@ -152,6 +158,7 @@ class DesignLayoutAgent:
                 system_prompt="You are a Creative Director and Design Systems Architect for modern web portfolios.",
                 user_prompt=user_prompt,
                 response_model=ThemeConfig,
+                max_tokens=settings.default_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(
@@ -210,6 +217,7 @@ class PortfolioGeneratorAgent:
                 user_prompt=user_prompt,
                 response_model=GeneratedPortfolio,
                 temperature=0.3,
+                max_tokens=settings.generator_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(
@@ -273,6 +281,7 @@ class ReviewerAgent:
                 ),
                 user_prompt=user_prompt,
                 response_model=FinalPortfolioPayload,
+                max_tokens=settings.reviewer_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(

@@ -55,6 +55,8 @@ async def startup_event():
     logger.info(f"Design Model: {settings.design_model}")
     logger.info(f"Generator Model: {settings.generator_model}")
     logger.info(f"Reviewer Model: {settings.reviewer_model}")
+    logger.info(f"Reasoning Effort: {settings.reasoning_effort}")
+    logger.info(f"Default Max Tokens: {settings.default_max_tokens}")
     logger.info("=" * 60)
 
 
