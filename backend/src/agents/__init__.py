@@ -1,4 +1,4 @@
-from src.agents.agents import (
+from backend.src.agents.agents import (
     IngestionAgent,
     StorytellerAgent,
     DesignLayoutAgent,

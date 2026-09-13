@@ -15,15 +15,15 @@ from sse_starlette.sse import EventSourceResponse
 from dotenv import load_dotenv
 from typing import Optional
 
-from src.config.env_config import settings
-from src.utils.logger import setup_logging, get_logger
+from backend.src.config.env_config import settings
+from backend.src.utils.logger import setup_logging, get_logger
 
 # Initialize centralized logging
 setup_logging(log_level=settings.log_level, log_file=settings.log_file)
 logger = get_logger("src.main")
 
-from src.schema.schemas import FinalPortfolioPayload
-from src.agents.agents import (
+from backend.src.schema.schemas import FinalPortfolioPayload
+from backend.src.agents.agents import (
     IngestionAgent,
     StorytellerAgent,
     DesignLayoutAgent,
@@ -112,7 +112,7 @@ async def generate_portfolio(
         theme = DesignLayoutAgent.run(enriched_data, user_theme_preference=theme_preference)
         logger.info(f"[Pipeline] Step 3/5: Design & Layout Agent finished in {time.perf_counter() - t0:.2f}s")
 
-        # Agent 4: Portfolio Generator (HTML & CSS)
+        # Agent 4: Portfolio Generator (HTML with Tailwind CSS & DaisyUI)
         t0 = time.perf_counter()
         logger.info("[Pipeline] Step 4/5: Portfolio Generator Agent starting...")
         generated_portfolio = PortfolioGeneratorAgent.run(enriched_data, theme)
@@ -198,11 +198,11 @@ async def generate_portfolio_stream(
             theme = await asyncio.to_thread(DesignLayoutAgent.run, enriched_data, theme_preference)
             logger.info(f"[Stream Pipeline] Step 3/5: Design & Layout Agent finished in {time.perf_counter() - t0:.2f}s")
 
-            # Step 4: Portfolio Generator (HTML & CSS)
+            # Step 4: Portfolio Generator (HTML with Tailwind CSS & DaisyUI)
             logger.info("[Stream Pipeline] Step 4/5: Portfolio Generator Agent starting...")
             yield {
                 "event": "agent_status",
-                "data": json.dumps({"agent": "Portfolio Generator Agent", "message": "Generating responsive HTML and CSS portfolio code..."})
+                "data": json.dumps({"agent": "Portfolio Generator Agent", "message": "Generating responsive portfolio with Tailwind CSS and DaisyUI..."})
             }
             t0 = time.perf_counter()
             generated_portfolio = await asyncio.to_thread(PortfolioGeneratorAgent.run, enriched_data, theme)

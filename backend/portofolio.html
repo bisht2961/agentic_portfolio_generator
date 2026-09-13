@@ -1,0 +1,193 @@
+<!DOCTYPE html>\n<html lang=\"en\" class=\"scroll-smooth\">\n
+
+<head>\n
+    <meta charset=\"UTF-8\" />\n
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n <title>Sachin Bisht – Software
+        Engineer Portfolio</title>\n <!-- Tailwind CSS CDN -->\n
+    <script src=\"https://cdn.tailwindcss.com\"></script>\n <!-- DaisyUI CDN -->\n
+    <link href=\"https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css\" rel=\"stylesheet\" />\n
+    <!-- Font Awesome -->\n
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css\" />\n
+    <!-- Google Font: Fira Code -->\n
+    <link href=\"https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap\"
+        rel=\"stylesheet\" />\n <style>
+        \n tailwind.config= {
+
+            \n darkMode: 'class',
+            \n theme: {
+                \n extend: {
+                    \n colors: {
+                        \n cyber: {
+                            \n 50: '#0a0a0a', \n 100: '#111111', \n 200: '#1a1a1a', \n 300: '#262626', \n 400: '#333333', \n 500: '#3d3d3d', \n 600: '#4a4a4a', \n 700: '#5a5a5a', \n 800: '#6b6b6b', \n 900: '#7c7c7c', \n
+                        }
+
+                        ,
+                        \n
+                    }
+
+                    ,
+                    \n fontFamily: {
+                        \n mono: ['\"Fira Code\"', 'monospace'], \n
+                    }
+
+                    ,
+                    \n
+                }
+
+                ,
+                \n
+            }
+
+            ,
+            \n
+        }
+
+        ;
+
+        \n body {
+            \n @apply bg-cyber-900 text-cyber-50 font-mono antialiased;
+            \n
+        }
+
+        \n .terminal-bg {
+            \n background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            \n
+        }
+
+        \n .glow {
+            \n text-shadow: 0 0 8px rgba(0, 255, 255, 0.6), 0 0 12px rgba(0, 255, 255, 0.4);
+            \n
+        }
+
+        \n
+    </style>\n
+</head>\n
+
+<body class=\"terminal-bg min-h-screen flex flex-col\">\n <!-- Header / Navbar -->\n <header class=\"sticky top-0 z-50
+        bg-cyber-800/70 backdrop-blur-md border-b border-cyber-600\">\n <nav class=\"max-w-7xl mx-auto flex items-center
+            justify-between p-4\" aria-label=\"Primary Navigation\">\n <a href=\"#\" class=\"text-2xl font-bold
+                text-cyber-100 glow\">Sachin Bisht</a>\n <ul class=\"flex space-x-4 text-cyber-200\">\n <li><a
+                        href=\"#about\" class=\"hover:text-cyber-50 transition-colors\">About</a></li>\n <li><a
+                        href=\"#projects\" class=\"hover:text-cyber-50 transition-colors\">Projects</a></li>\n <li><a
+                        href=\"#skills\" class=\"hover:text-cyber-50 transition-colors\">Skills</a></li>\n <li><a
+                        href=\"#experience\" class=\"hover:text-cyber-50 transition-colors\">Experience</a></li>\n <li>
+                    <a href=\"#education\" class=\"hover:text-cyber-50 transition-colors\">Education</a></li>\n </ul>\n
+        </nav>\n </header>\n\n <main class=\"flex-grow\">\n <!-- About Section -->\n <section id=\"about\"
+            class=\"py-20\" aria-labelledby=\"about-heading\">\n <div class=\"max-w-4xl mx-auto text-center px-4\">\n
+                <h1 id=\"about-heading\" class=\"text-5xl md:text-6xl font-bold text-cyber-50 glow mb-4\">Sachin Bisht
+                </h1>\n <p class=\"text-xl md:text-2xl text-cyber-200 mb-6\">Software Engineer</p>\n <p class=\"text-lg
+                    md:text-xl text-cyber-300 max-w-2xl mx-auto mb-8\">\n Dynamic full‑stack engineer with a proven
+                    track record in AI‑driven web solutions and cloud‑native architecture. I blend Java, Python, and
+                    React expertise to build scalable, user‑centric applications that deliver measurable business
+                    impact.\n </p>\n <div class=\"flex justify-center space-x-4\">\n <a
+                        href=\"mailto:sachin@example.com\" class=\"btn btn-primary gap-2\"><i class=\"fas
+                            fa-envelope\"></i> Email</a>\n <a href=\"https://linkedin.com/in/sachinbisht\"
+                        target=\"_blank\" class=\"btn btn-outline btn-info gap-2\"><i class=\"fab fa-linkedin\"></i>
+                        LinkedIn</a>\n <a href=\"https://github.com/sachinbisht\" target=\"_blank\" class=\"btn
+                        btn-outline btn-neutral gap-2\"><i class=\"fab fa-github\"></i> GitHub</a>\n </div>\n </div>\n
+        </section>\n\n <!-- Projects Section -->\n <section id=\"projects\" class=\"py-20 bg-cyber-800\"
+            aria-labelledby=\"projects-heading\">\n <div class=\"max-w-7xl mx-auto px-4\">\n <h2 id=\"projects-heading\"
+                    class=\"text-4xl font-semibold text-cyber-50 mb-8 text-center glow\">Projects</h2>\n <div
+                    class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\">\n <!-- Project Card 1 -->\n <article
+                        class=\"card bg-cyber-700 shadow-xl hover:shadow-2xl transition-shadow\">\n <div
+                            class=\"card-body\">\n <h3 class=\"card-title text-cyber-100\">AI Resume Generator</h3>\n <p
+                                class=\"text-cyber-300 mb-2\">AI‑powered resume builder web app</p>\n <p class=\"text-sm
+                                text-cyber-400 mb-3\">Enables users to generate professional resumes with AI‑suggested
+                                summaries, PDF export, and secure authentication.</p>\n <ul class=\"list-disc
+                                list-inside text-xs text-cyber-200 mb-3 space-y-1\">\n <li>Generated 10,000+ resumes per
+                                    month, boosting user onboarding by 30%</li>\n <li>Reduced resume creation time by
+                                    70% through AI‑driven content generation</li>\n <li>Achieved a 95% user satisfaction
+                                    score on resume quality</li>\n </ul>\n <div class=\"flex flex-wrap gap-2 mb-3\">\n
+                                <span class=\"badge badge-outline badge-sm bg-cyber-600
+                                    text-cyber-100\">JavaScript</span>\n <span class=\"badge badge-outline badge-sm
+                                    bg-cyber-600 text-cyber-100\">React</span>\n <span class=\"badge badge-outline
+                                    badge-sm bg-cyber-600 text-cyber-100\">Node.js</span>\n <span class=\"badge
+                                    badge-outline badge-sm bg-cyber-600 text-cyber-100\">OpenAI API</span>\n <span
+                                    class=\"badge badge-outline badge-sm bg-cyber-600 text-cyber-100\">AWS S3</span>\n
+                            </div>\n <div class=\"card-actions justify-end\">\n <a href=\"#\" class=\"btn btn-sm
+                                    btn-primary disabled:opacity-50\" aria-label=\"Live Demo (not available)\"
+                                    disabled>Live Demo</a>\n <a href=\"#\" class=\"btn btn-sm btn-outline btn-neutral
+                                    disabled:opacity-50\" aria-label=\"Source Code (not available)\"
+                                    disabled>Source</a>\n </div>\n </div>\n </article>\n <!-- Project Card 2 -->\n
+                    <article class=\"card bg-cyber-700 shadow-xl hover:shadow-2xl transition-shadow\">\n <div
+                            class=\"card-body\">\n <h3 class=\"card-title text-cyber-100\">News Hub</h3>\n <p
+                                class=\"text-cyber-300 mb-2\">Full‑stack news aggregation and summarization app</p>\n <p
+                                class=\"text-sm text-cyber-400 mb-3\">Integrates News API and Gemini AI to summarize and
+                                display headlines; includes JWT‑based user authentication and CRUD features.</p>\n <ul
+                                class=\"list-disc list-inside text-xs text-cyber-200 mb-3 space-y-1\">\n <li>Processed
+                                    50,000+ news articles daily, delivering real‑time summaries with 98% accuracy</li>\n
+                                <li>Reduced user browsing time by 60% through AI summarization</li>\n <li>Supported
+                                    5,000+ concurrent users with zero downtime</li>\n </ul>\n <div class=\"flex
+                                flex-wrap gap-2 mb-3\">\n <span class=\"badge badge-outline badge-sm bg-cyber-600
+                                    text-cy-100\">JavaScript</span>\n <span class=\"badge badge-outline badge-sm
+                                    bg-cyber-600 text-cy-100\">React</span>\n <span class=\"badge badge-outline badge-sm
+                                    bg-cyber-600 text-cy-100\">Node.js</span>\n <span class=\"badge badge-outline
+                                    badge-sm bg-cyber-600 text-cy-100\">Gemini AI</span>\n <span class=\"badge
+                                    badge-outline badge-sm bg-cyber-600 text-cy-100\">MongoDB</span>\n </div>\n <div
+                                class=\"card-actions justify-end\">\n <a href=\"#\" class=\"btn btn-sm btn-primary
+                                    disabled:opacity-50\" aria-label=\"Live Demo (not available)\" disabled>Live
+                                    Demo</a>\n <a href=\"#\" class=\"btn btn-sm btn-outline btn-neutral
+                                    disabled:opacity-50\" aria-label=\"Source Code (not available)\"
+                                    disabled>Source</a>\n </div>\n </div>\n </article>\n </div>\n </div>\n </section>
+        \n\n <!-- Skills Section -->\n <section id=\"skills\" class=\"py-20\" aria-labelledby=\"skills-heading\">\n <div
+                class=\"max-w-5xl mx-auto px-4 text-center\">\n <h2 id=\"skills-heading\" class=\"text-4xl font-semibold
+                    text-cyber-50 mb-8 glow\">Skills</h2>\n <div class=\"flex flex-wrap justify-center gap-3\">\n <span
+                        class=\"badge badge-lg bg-cyber-600 text-cyber-100 hover:bg-cyber-500
+                        transition-colors\">Java</span>\n <span class=\"badge badge-lg bg-cyber-600 text-cyber-100
+                        hover:bg-cyber-500 transition-colors\">Python</span>\n <span class=\"badge badge-lg bg-cyber-600
+                        text-cyber-100 hover:bg-cyber-500 transition-colors\">C++</span>\n <span class=\"badge badge-lg
+                        bg-cyber-600 text-cyber-100 hover:bg-cyber-500 transition-colors\">SQL</span>\n <span
+                        class=\"badge badge-lg bg-cyber-600 text-cyber-100 hover:bg-cyber-500
+                        transition-colors\">HTML5</span>\n <span class=\"badge badge-lg bg-cyber-600 text-cyber-100
+                        hover:bg-cyber-500 transition-colors\">CSS3</span>\n <span class=\"badge badge-lg bg-cyber-600
+                        text-cyber-100 hover:bg-cyber-500 transition-colors\">JavaScript</span>\n <span class=\"badge
+                        badge-lg bg-cyber-600 text-cyber-100 hover:bg-cyber-500 transition-colors\">TypeScript</span>\n
+                    <span class=\"badge badge-lg bg-cyber-600 text-cyber-100 hover:bg-cyber-500
+                        transition-colors\">Spring Boot</span>\n <span class=\"badge badge-lg bg-cyber-600
+                        text-cyber-100 hover:bg-cyber-500 transition-colors\">FastAPI</span>\n <span class=\"badge
+                        badge-lg bg-cyber-600 text-cyber-100 hover:bg-cyber-500
+                        transition-colors\">Microservice</span>\n <span class=\"badge badge-lg bg-cyber-600
+                        text-cyber-100 hover:bg-cyber-500 transition-colors\">React‑Redux</span>\n </div>\n </div>\n
+        </section>\n\n <!-- Experience Section -->\n <section id=\"experience\" class=\"py-20 bg-cyber-800\"
+            aria-labelledby=\"experience-heading\">\n <div class=\"max-w-5xl mx-auto px-4\">\n <h2
+                    id=\"experience-heading\" class=\"text-4xl font-semibold text-cyber-50 mb-8 text-center glow\">
+                    Experience</h2>\n <ul class=\"timeline timeline-vertical timeline-snap-icon max-w-4xl mx-auto\">\n
+                    <!-- Experience Item 1 -->\n <li>\n <div class=\"timeline-start timeline-box bg-cyber-700
+                            text-cyber-100\">\n <strong>Nov 2023 – Present</strong>\n </div>\n <div
+                            class=\"timeline-middle timeline-box bg-cyber-500 text-cyber-900 rounded-full\">\n <i
+                                class=\"fas fa-briefcase\"></i>\n </div>\n <div class=\"timeline-end timeline-box
+                            bg-cyber-700 text-cyber-100\">\n <h3 class=\"font-bold\">Software Development Engineer</h3>
+                            \n <p class=\"text-sm\">Infosys Limited</p>\n <ul class=\"list-disc list-inside text-xs mt-2
+                                space-y-1\">\n <li>Received the Rookie of the Quarter award for outstanding performance
+                                    and contributions as a new joinee in 2024</li>\n <li>Engineered an Agentic RAG
+                                    Chatbot that extracts and processes Excel documents, reducing manual work by 50%
+                                </li>\n <li>Delivered features from concept to deployment following TDD principles with
+                                    80%+ test coverage, collaborating with UI/UX, QA, and DevOps teams</li>\n <li>
+                                    Optimized Excel‑processing backend APIs, improving performance by 87% and reducing
+                                    memory usage by 64%, enhancing scalability and maintainability</li>\n </ul>\n </div>
+                        \n </li>\n <!-- Experience Item 2 -->\n <li>\n <div class=\"timeline-start timeline-box
+                            bg-cyber-700 text-cyber-100\">\n <strong>Jan 2023 – Jun 2023</strong>\n </div>\n <div
+                            class=\"timeline-middle timeline-box bg-cyber-500 text-cyber-900 rounded-full\">\n <i
+                                class=\"fas fa-briefcase\"></i>\n </div>\n <div class=\"timeline-end timeline-box
+                            bg-cyber-700 text-cyber-100\">\n <h3 class=\"font-bold\">Software Development Intern</h3>\n
+                            <p class=\"text-sm\">Quantiphi</p>\n <ul class=\"list-disc list-inside text-xs mt-2
+                                space-y-1\">\n <li>Engineered backend APIs to fetch and process student‑mentor data,
+                                    streamlining matching workflows by 40% and handling 1,000+ records seamlessly</li>\n
+                                <li>Designed and implemented reusable UI tables with sorting, filtering, and pagination,
+                                    boosting data accessibility and reducing lookup time by 35%</li>\n </ul>\n </div>\n
+                    </li>\n </ul>\n </div>\n </section>\n\n <!-- Education Section -->\n <section id=\"education\"
+            class=\"py-20\" aria-labelledby=\"education-heading\">\n <div class=\"max-w-4xl mx-auto px-4 text-center\">
+                \n <h2 id=\"education-heading\" class=\"text-4xl font-semibold text-cyber-50 mb-8 glow\">Education</h2>
+                \n <p class=\"text-lg text-cyber-300\">Bachelor of Technology in Computer Science – (University Name,
+                    Year)</p>\n </div>\n </section>\n </main>\n\n <!-- Footer -->\n <footer class=\"bg-cyber-900
+        text-cyber-300 py-6\">\n <div class=\"max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between
+            items-center\">\n <p class=\"text-sm\">© 2024 Sachin Bisht. All rights reserved.</p>\n <div class=\"flex
+                space-x-4 mt-4 md:mt-0\">\n <a href=\"https://github.com/sachinbisht\" target=\"_blank\"
+                    class=\"text-cyber-200 hover:text-cyber-50 transition-colors\"><i class=\"fab fa-github
+                        fa-lg\"></i></a>\n <a href=\"https://linkedin.com/in/sachinbisht\" target=\"_blank\"
+                    class=\"text-cyber-200 hover:text-cyber-50 transition-colors\"><i class=\"fab fa-linkedin
+                        fa-lg\"></i></a>\n <a href=\"mailto:sachin@example.com\" class=\"text-cyber-200
+                    hover:text-cyber-50 transition-colors\"><i class=\"fas fa-envelope fa-lg\"></i></a>\n </div>\n
+        </div>\n </footer>\n</body>\n
+
+</html>
