@@ -56,12 +56,12 @@ class IngestionAgent:
                     "from the resume text into the required structured schema accurately and concisely.\n"
                     "- Extract ONLY factual information present in the resume text.\n"
                     "- Do NOT invent, hallucinate, or duplicate work experiences, projects, or skills.\n"
-                    "- Group bullet points by distinct jobs/companies rather than splitting each bullet into a separate experience.\n"
-                    "- Keep entries clean, distinct, and directly derived from the input."
+                    "- IMPORTANT: Group all bullet points for the same company/job together under ONE ExperienceItem in its `impact_bullets` list. Never create a separate ExperienceItem for individual bullet points or responsibilities.\n"
+                    "- Keep entries clean, distinct, concise, and directly derived from the input."
                 ),
                 user_prompt=f"Resume Text:\n\n{raw_text}",
                 response_model=RawParsedData,
-                max_tokens=settings.default_max_tokens,
+                max_tokens=settings.ingestion_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(
@@ -109,7 +109,7 @@ class StorytellerAgent:
                 user_prompt=user_prompt,
                 response_model=EnrichedContent,
                 temperature=0.4,
-                max_tokens=settings.default_max_tokens,
+                max_tokens=settings.storyteller_max_tokens,
             )
             elapsed = time.perf_counter() - start_time
             logger.info(

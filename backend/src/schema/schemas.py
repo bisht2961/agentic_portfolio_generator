@@ -14,19 +14,25 @@ class ProjectItem(BaseModel):
     live_url: Optional[str] = None
 
 class ExperienceItem(BaseModel):
-    role: str
-    company: str
-    duration: str
-    impact_bullets: List[str] = Field(default_factory=list)
+    role: str = Field(description="Job title or role name")
+    company: str = Field(description="Employer or company name")
+    duration: str = Field(description="Employment timeframe (e.g. 'Nov 2023 – Present')")
+    impact_bullets: List[str] = Field(
+        default_factory=list,
+        description="All bullet points and key achievements for this role at this company"
+    )
 
 class RawParsedData(BaseModel):
     """Output from Ingestion Agent"""
     full_name: str
     headline: str
     raw_bio: str
-    skills: List[str] = Field(default_factory=list)
-    projects: List[ProjectItem] = Field(default_factory=list)
-    experience: List[ExperienceItem] = Field(default_factory=list)
+    skills: List[str] = Field(default_factory=list, description="List of technical and core skills")
+    projects: List[ProjectItem] = Field(default_factory=list, description="Distinct projects listed in resume")
+    experience: List[ExperienceItem] = Field(
+        default_factory=list,
+        description="List of distinct employers/jobs. Group all bullets for the same employer into one ExperienceItem."
+    )
 
 class EnrichedContent(BaseModel):
     """Output from Storyteller Agent"""

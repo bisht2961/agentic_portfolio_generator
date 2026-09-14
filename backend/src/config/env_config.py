@@ -28,7 +28,9 @@ class Settings(BaseSettings):
 
     # Token and Reasoning Controls
     reasoning_effort: str = "low"  # "low", "medium", "high" for reasoning models
-    default_max_tokens: int = 4000
+    default_max_tokens: int = 8000
+    ingestion_max_tokens: int = 8000
+    storyteller_max_tokens: int = 8000
     generator_max_tokens: int = 8000
     reviewer_max_tokens: int = 8000
 
