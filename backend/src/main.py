@@ -6,32 +6,32 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from dotenv import load_dotenv
+load_dotenv(PROJECT_ROOT / ".env")
+
 import json
 import time
 import asyncio
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
-from dotenv import load_dotenv
 from typing import Optional
 
-from backend.src.config.env_config import settings
-from backend.src.utils.logger import setup_logging, get_logger
+from src.config.env_config import settings
+from src.utils.logger import setup_logging, get_logger
 
 # Initialize centralized logging
 setup_logging(log_level=settings.log_level, log_file=settings.log_file)
 logger = get_logger("src.main")
 
-from backend.src.schema.schemas import FinalPortfolioPayload
-from backend.src.agents.agents import (
+from src.schema.schemas import FinalPortfolioPayload
+from src.agents.agents import (
     IngestionAgent,
     StorytellerAgent,
     DesignLayoutAgent,
     PortfolioGeneratorAgent,
     ReviewerAgent,
 )
-
-load_dotenv()
 
 app = FastAPI(title="Agentic Portfolio Generator Backend", version="1.0.0")
 

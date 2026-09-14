@@ -48,10 +48,12 @@ class ThemeConfig(BaseModel):
 
 class GeneratedPortfolio(BaseModel):
     """Output from Portfolio Generator Agent"""
-    html_code: str = Field(description="Complete, valid, semantic HTML5 markup for the portfolio website")
-    css_code: str = Field(description="Modern, responsive CSS stylesheet matching the design theme, palette, and layout")
     html_code: str = Field(
         description="Complete, self-contained, valid HTML5 markup for the portfolio website with Tailwind CSS, DaisyUI components, and shadcn/ui-inspired styling embedded directly within the HTML tags and head"
+    )
+    css_code: Optional[str] = Field(
+        default=None,
+        description="Optional additional custom CSS rules if needed"
     )
 
 class FinalPortfolioPayload(BaseModel):
@@ -64,10 +66,12 @@ class FinalPortfolioPayload(BaseModel):
     projects: List[ProjectItem]
     experience: List[ExperienceItem]
     seo_keywords: List[str]
-    html_code: str = Field(description="Production-ready, valid, semantic HTML code for the portfolio")
-    css_code: str = Field(description="Responsive, polished CSS styling matching the design theme and layout")
     html_code: str = Field(
         description="Production-ready, self-contained, valid HTML5 code with Tailwind CSS, DaisyUI, and shadcn/ui-inspired styling directly within HTML tags"
+    )
+    css_code: Optional[str] = Field(
+        default=None,
+        description="Optional additional custom CSS rules if needed"
     )
     review_notes: Optional[str] = Field(
         default=None,

@@ -2,8 +2,8 @@ import time
 from typing import Type, TypeVar, Optional, Dict, Any
 from pydantic import BaseModel
 from openai import OpenAI, LengthFinishReasonError
-from backend.src.config.env_config import settings
-from backend.src.utils.logger import get_logger
+from src.config.env_config import settings
+from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

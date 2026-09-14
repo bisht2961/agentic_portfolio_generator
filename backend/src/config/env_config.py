@@ -1,5 +1,10 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
+
+# Resolve the path to backend/.env regardless of where the command is executed
+BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+ENV_FILE = BACKEND_DIR / ".env"
 
 class Settings(BaseSettings):
     # OpenRouter API Setup
@@ -28,7 +33,7 @@ class Settings(BaseSettings):
     reviewer_max_tokens: int = 8000
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(ENV_FILE, ".env"),
         env_file_encoding="utf-8",
         extra="ignore"
     )

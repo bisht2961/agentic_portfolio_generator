@@ -1,4 +1,4 @@
-from backend.src.schema.schemas import (
+from src.schema.schemas import (
     ProjectItem,
     ExperienceItem,
     RawParsedData,
