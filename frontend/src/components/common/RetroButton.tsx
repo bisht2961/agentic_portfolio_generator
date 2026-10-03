@@ -17,7 +17,7 @@ export const RetroButton: React.FC<RetroButtonProps> = ({
   ...props
 }) => {
   const baseStyles = 
-    'inline-flex items-center justify-center font-bold tracking-wider uppercase transition-all duration-100 select-none border-2 border-black active:translate-x-[2px] active:translate-y-[2px]';
+    'inline-flex items-center justify-center font-bold tracking-wider uppercase transition-all duration-100 select-none border-2 border-retro-border active:translate-x-[2px] active:translate-y-[2px]';
 
   const sizeStyles = {
     sm: 'px-3 py-1 text-xs gap-1.5',
@@ -27,9 +27,9 @@ export const RetroButton: React.FC<RetroButtonProps> = ({
 
   const variantStyles = {
     yellow: 'bg-retro-yellow text-black hover:bg-retro-yellow-hover shadow-retro-yellow active:shadow-retro-yellow-sm',
-    cyan: 'bg-retro-cyan text-black hover:bg-cyan-300 shadow-retro-yellow active:shadow-retro-yellow-sm',
-    magenta: 'bg-retro-magenta text-white hover:bg-pink-600 shadow-retro-yellow active:shadow-retro-yellow-sm',
-    dark: 'bg-retro-surface text-retro-cyan border-retro-cyan hover:bg-retro-panel shadow-[4px_4px_0px_#000]',
+    cyan: 'bg-retro-cyan text-white dark:text-black hover:opacity-90 shadow-retro-yellow active:shadow-retro-yellow-sm',
+    magenta: 'bg-retro-magenta text-white hover:opacity-90 shadow-retro-yellow active:shadow-retro-yellow-sm',
+    dark: 'bg-retro-surface text-retro-cyan border-retro-cyan hover:bg-retro-panel shadow-retro-yellow',
   };
 
   const disabledStyles = disabled

@@ -42,7 +42,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ portfolio }) => {
             Verified Portfolio Profile
           </div>
 
-          <h1 className="font-pixel text-2xl sm:text-4xl text-retro-yellow text-shadow-neon-yellow tracking-wider leading-relaxed">
+          <h1 className="font-pixel text-2xl sm:text-4xl text-retro-heading text-shadow-neon-yellow tracking-wider leading-relaxed">
             {portfolio.full_name}
           </h1>
 
@@ -52,13 +52,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ portfolio }) => {
         </div>
 
         {/* Storytelling Bio */}
-        <p className="font-mono text-sm sm:text-base text-slate-300 leading-relaxed border-l-2 border-retro-yellow pl-4 py-1 bg-black/20">
+        <p className="font-mono text-sm sm:text-base text-retro-body leading-relaxed border-l-2 border-retro-yellow pl-4 py-1 bg-retro-surface/70">
           {portfolio.bio}
         </p>
 
         {/* Skills Pills */}
         <div className="space-y-2 pt-2">
-          <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+          <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-retro-muted">
             Engineered Capabilities & Tech Stack
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -78,7 +78,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ portfolio }) => {
         <div className="pt-3 flex flex-wrap items-center gap-3">
           <a
             href={`mailto:${portfolio.full_name.toLowerCase().replace(/\s+/g, '.')}@example.com`}
-            className="px-3.5 py-2 bg-retro-yellow text-black font-mono font-bold text-xs uppercase tracking-wider border-2 border-black shadow-retro-yellow-sm hover:bg-retro-yellow-hover flex items-center gap-1.5 active:translate-x-0.5 active:translate-y-0.5"
+            className="px-3.5 py-2 bg-retro-yellow text-black font-mono font-bold text-xs uppercase tracking-wider border-2 border-retro-border shadow-retro-yellow-sm hover:bg-retro-yellow-hover flex items-center gap-1.5 active:translate-x-0.5 active:translate-y-0.5"
           >
             <Mail className="w-3.5 h-3.5" />
             Contact Candidate
@@ -98,14 +98,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ portfolio }) => {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-2 bg-retro-surface text-slate-200 font-mono font-bold text-xs uppercase tracking-wider border-2 border-slate-700 hover:border-slate-500 hover:text-white flex items-center gap-1.5 shadow-[2px_2px_0px_#000]"
+            className="px-3.5 py-2 bg-retro-surface text-retro-body font-mono font-bold text-xs uppercase tracking-wider border-2 border-retro-border hover:border-retro-cyan hover:text-retro-cyan flex items-center gap-1.5 shadow-[2px_2px_0px_#000]"
           >
             <GithubIcon className="w-3.5 h-3.5" />
             GitHub
           </a>
 
           {portfolio.review_notes && (
-            <div className="ml-auto hidden sm:flex items-center gap-1 text-[11px] font-mono text-retro-green bg-emerald-950/40 border border-emerald-800/60 px-2.5 py-1">
+            <div className="ml-auto hidden sm:flex items-center gap-1 text-[11px] font-mono text-[#15803D] dark:text-retro-green bg-emerald-100 dark:bg-emerald-950/40 border border-[#15803D] dark:border-emerald-800/60 px-2.5 py-1">
               <Award className="w-3.5 h-3.5" />
               <span>QA Certified</span>
             </div>

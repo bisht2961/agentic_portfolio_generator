@@ -77,7 +77,7 @@ export const AgentTerminal: React.FC = () => {
               }`}
             />
           </span>
-          <span className="text-[11px] font-mono text-slate-300 uppercase">
+          <span className="text-[11px] font-mono text-retro-muted uppercase">
             {activeAgent}
           </span>
         </div>
@@ -86,7 +86,7 @@ export const AgentTerminal: React.FC = () => {
     >
       <div className="flex flex-col h-full space-y-3">
         {/* Pipeline Step Progress Bar */}
-        <div className="grid grid-cols-5 gap-1 p-1 bg-black/40 border border-slate-800 rounded">
+        <div className="grid grid-cols-5 gap-1 p-1 bg-retro-input-inactive/60 dark:bg-black/40 border border-retro-border rounded">
           {PIPELINE_STEPS.map((step, idx) => {
             const isFinished = currentStepIdx > idx || status === 'completed';
             const isCurrent = currentStepIdx === idx && status !== 'completed';
@@ -96,10 +96,10 @@ export const AgentTerminal: React.FC = () => {
                 key={step.id}
                 className={`py-1 px-1.5 text-center font-mono text-[10px] transition-all flex flex-col items-center justify-center border ${
                   isFinished
-                    ? 'border-retro-green bg-emerald-950/40 text-retro-green font-bold'
+                    ? 'border-retro-green bg-emerald-100 text-[#15803D] dark:bg-emerald-950/40 dark:text-retro-green font-bold'
                     : isCurrent
-                    ? 'border-retro-yellow bg-yellow-950/40 text-retro-yellow font-bold animate-pulse'
-                    : 'border-slate-800 text-slate-500 bg-slate-900/30'
+                    ? 'border-retro-yellow bg-amber-100 text-[#CA8A04] dark:bg-yellow-950/40 dark:text-retro-yellow font-bold animate-pulse'
+                    : 'border-retro-border text-retro-muted bg-retro-surface/50'
                 }`}
               >
                 <div className="flex items-center gap-1">
@@ -118,9 +118,9 @@ export const AgentTerminal: React.FC = () => {
         </div>
 
         {/* 8-Bit Terminal Screen with CRT Scanline Effect */}
-        <div className="relative flex-1 min-h-[260px] max-h-[360px] bg-black/90 border border-retro-cyan/40 p-3 crt-scanlines rounded flex flex-col font-mono text-xs overflow-hidden">
+        <div className="relative flex-1 min-h-[260px] max-h-[360px] bg-[#E2EDF8]/40 dark:bg-black/90 border border-retro-cyan/50 p-3 crt-scanlines rounded flex flex-col font-mono text-xs overflow-hidden">
           {/* Decorative Terminal Header */}
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-[10px] text-slate-400">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-retro-border/50 text-[10px] text-retro-muted">
             <span className="text-retro-cyan flex items-center gap-1">
               <Cpu className="w-3 h-3" /> AGENT_DISPATCHER://SSE_STREAM
             </span>
@@ -130,10 +130,10 @@ export const AgentTerminal: React.FC = () => {
           {/* Scrolling Log Messages */}
           <div
             ref={logContainerRef}
-            className="flex-1 overflow-y-auto space-y-2 retro-scroll pr-1 text-slate-300"
+            className="flex-1 overflow-y-auto space-y-2 retro-scroll pr-1 text-retro-body"
           >
             {logs.length === 0 ? (
-              <div className="text-slate-500 italic py-6 text-center">
+              <div className="text-retro-muted italic py-6 text-center">
                 &gt; Awaiting resume PDF submission to start multi-agent pipeline...
               </div>
             ) : (
@@ -144,26 +144,26 @@ export const AgentTerminal: React.FC = () => {
                 return (
                   <div
                     key={log.id}
-                    className="leading-relaxed flex items-start gap-2 hover:bg-slate-900/40 px-1 rounded transition-colors"
+                    className="leading-relaxed flex items-start gap-2 hover:bg-black/5 dark:hover:bg-slate-900/40 px-1 rounded transition-colors"
                   >
-                    <span className="text-slate-500 text-[10px] select-none shrink-0 pt-0.5">
+                    <span className="text-retro-muted text-[10px] select-none shrink-0 pt-0.5">
                       [{log.timestamp}]
                     </span>
                     <span
-                      className={`px-1 rounded text-[10px] uppercase font-bold shrink-0 ${
+                      className={`px-1 rounded text-[10px] uppercase font-bold shrink-0 border ${
                         isError
-                          ? 'bg-retro-magenta/20 text-retro-magenta border border-retro-magenta/40'
+                          ? 'bg-retro-magenta/20 text-retro-magenta border-retro-magenta/40'
                           : log.agent.includes('Ingestion')
-                          ? 'bg-cyan-950 text-retro-cyan border border-cyan-800'
+                          ? 'bg-sky-100 text-[#0284C7] border-[#0284C7] dark:bg-cyan-950 dark:text-retro-cyan dark:border-cyan-800'
                           : log.agent.includes('Story')
-                          ? 'bg-purple-950 text-purple-300 border border-purple-800'
+                          ? 'bg-purple-100 text-purple-700 border-purple-400 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800'
                           : log.agent.includes('Design')
-                          ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                          ? 'bg-amber-100 text-[#CA8A04] border-[#EAB308] dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800'
                           : log.agent.includes('Generator')
-                          ? 'bg-blue-950 text-blue-300 border border-blue-800'
+                          ? 'bg-blue-100 text-blue-700 border-blue-400 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800'
                           : log.agent.includes('Reviewer')
-                          ? 'bg-emerald-950 text-retro-green border border-emerald-800'
-                          : 'bg-slate-800 text-slate-300'
+                          ? 'bg-emerald-100 text-[#15803D] border-[#15803D] dark:bg-emerald-950 dark:text-retro-green dark:border-emerald-800'
+                          : 'bg-retro-panel text-retro-body border-retro-border'
                       }`}
                     >
                       {log.agent}
@@ -173,8 +173,8 @@ export const AgentTerminal: React.FC = () => {
                         isError
                           ? 'text-retro-magenta font-semibold'
                           : isRunning
-                          ? 'text-retro-yellow'
-                          : 'text-slate-200'
+                          ? 'text-retro-yellow font-bold'
+                          : 'text-retro-body'
                       }`}
                     >
                       {log.message}

@@ -22,10 +22,10 @@ const CornerRivet = ({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) => {
 
   return (
     <div
-      className={`absolute ${posClasses[position]} w-2 h-2 rounded-full bg-slate-600 border border-black flex items-center justify-center pointer-events-none z-10 shadow-inner`}
+      className={`absolute ${posClasses[position]} w-2 h-2 rounded-full bg-retro-rivet border border-retro-border flex items-center justify-center pointer-events-none z-10 shadow-inner`}
       title="Rivet"
     >
-      <div className="w-1 h-[1px] bg-slate-400 rotate-45" />
+      <div className="w-1 h-[1px] bg-slate-300 dark:bg-slate-400 rotate-45" />
     </div>
   );
 };
@@ -62,7 +62,7 @@ export const RetroCard: React.FC<RetroCardProps> = ({
                 {title}
               </h3>
               {subtitle && (
-                <p className="text-[11px] text-slate-400 font-mono">{subtitle}</p>
+                <p className="text-[11px] text-retro-muted font-mono">{subtitle}</p>
               )}
             </div>
           </div>

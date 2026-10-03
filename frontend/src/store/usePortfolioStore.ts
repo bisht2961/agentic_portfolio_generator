@@ -2,6 +2,34 @@ import { create } from 'zustand';
 import { FinalPortfolioPayload, LogEntry, PipelineStage } from '../types/portfolio';
 import sampleResponse from '../../sample_response.json';
 
+export type UiTheme = 'dark' | 'light';
+
+const applyThemeToDom = (theme: UiTheme) => {
+  if (typeof document === 'undefined') return;
+  const root = document.documentElement;
+  if (theme === 'light') {
+    root.classList.add('light');
+    root.classList.remove('dark');
+    root.setAttribute('data-theme', 'light');
+  } else {
+    root.classList.add('dark');
+    root.classList.remove('light');
+    root.setAttribute('data-theme', 'dark');
+  }
+};
+
+const getInitialTheme = (): UiTheme => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('portfolio-ui-theme');
+    if (saved === 'light' || saved === 'dark') {
+      applyThemeToDom(saved);
+      return saved;
+    }
+  }
+  applyThemeToDom('dark');
+  return 'dark';
+};
+
 interface PortfolioState {
   portfolio: FinalPortfolioPayload | null;
   status: PipelineStage;
@@ -12,6 +40,7 @@ interface PortfolioState {
   themePreference: string;
   selectedFile: File | null;
   viewMode: 'interactive' | 'sandbox' | 'code';
+  uiTheme: UiTheme;
   
   // Actions
   setPortfolio: (portfolio: FinalPortfolioPayload | null) => void;
@@ -27,12 +56,15 @@ interface PortfolioState {
   setViewMode: (mode: 'interactive' | 'sandbox' | 'code') => void;
   loadSampleData: () => void;
   resetPipeline: () => void;
+  toggleUiTheme: () => void;
+  setUiTheme: (theme: UiTheme) => void;
 }
 
-export const usePortfolioStore = create<PortfolioState>((set) => ({
+export const usePortfolioStore = create<PortfolioState>((set, get) => ({
   portfolio: sampleResponse as FinalPortfolioPayload, // Pre-loaded with sample response
   status: 'completed',
   activeAgent: 'Ready',
+  uiTheme: getInitialTheme(),
   logs: [
     {
       id: 'log-init-1',
@@ -112,5 +144,16 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
       error: null,
       selectedFile: null,
     }),
+  setUiTheme: (uiTheme) => {
+    applyThemeToDom(uiTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('portfolio-ui-theme', uiTheme);
+    }
+    set({ uiTheme });
+  },
+  toggleUiTheme: () => {
+    const nextTheme = get().uiTheme === 'dark' ? 'light' : 'dark';
+    get().setUiTheme(nextTheme);
+  },
 }));
 

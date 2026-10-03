@@ -21,12 +21,12 @@ export const RetroBadge: React.FC<RetroBadgeProps> = ({
   };
 
   const variantClasses = {
-    cyan: 'bg-cyan-950/70 text-retro-cyan border-retro-cyan hover:bg-cyan-900/60',
-    yellow: 'bg-yellow-950/70 text-retro-yellow border-retro-yellow hover:bg-yellow-900/60',
-    green: 'bg-emerald-950/70 text-retro-green border-retro-green hover:bg-emerald-900/60',
-    magenta: 'bg-pink-950/70 text-retro-magenta border-retro-magenta hover:bg-pink-900/60',
-    slate: 'bg-slate-800/80 text-slate-300 border-slate-600 hover:bg-slate-700/80',
-    outline: 'bg-transparent text-slate-300 border-slate-500 hover:border-slate-300',
+    cyan: 'bg-sky-100 text-[#0284C7] border-[#0284C7] dark:bg-cyan-950/70 dark:text-retro-cyan dark:border-retro-cyan hover:opacity-90',
+    yellow: 'bg-amber-100 text-[#CA8A04] border-[#EAB308] dark:bg-yellow-950/70 dark:text-retro-yellow dark:border-retro-yellow hover:opacity-90',
+    green: 'bg-emerald-100 text-[#15803D] border-[#15803D] dark:bg-emerald-950/70 dark:text-retro-green dark:border-retro-green hover:opacity-90',
+    magenta: 'bg-pink-100 text-pink-700 border-pink-400 dark:bg-pink-950/70 dark:text-retro-magenta dark:border-retro-magenta hover:opacity-90',
+    slate: 'bg-retro-input-inactive text-retro-body border-retro-border dark:bg-slate-800/80 dark:text-slate-300 dark:border-slate-600 hover:opacity-90',
+    outline: 'bg-transparent text-retro-body border-retro-border hover:border-retro-cyan',
   };
 
   return (

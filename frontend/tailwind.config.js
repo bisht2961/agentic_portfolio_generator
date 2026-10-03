@@ -1,5 +1,15 @@
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -8,17 +18,25 @@ export default {
     extend: {
       colors: {
         retro: {
-          bg: '#0a0d14',
-          surface: '#111726',
-          panel: '#161f33',
-          border: '#1e293b',
-          cyan: '#00f0ff',
-          'cyan-dim': 'rgba(0, 240, 255, 0.15)',
-          yellow: '#ffe600',
-          'yellow-hover': '#ffd000',
-          magenta: '#ff007f',
-          green: '#00ff66',
-          muted: '#8b9bb4',
+          bg: withOpacity('--canvas-bg-rgb'),
+          surface: withOpacity('--card-surface-bg-rgb'),
+          panel: withOpacity('--panel-bg-rgb'),
+          border: withOpacity('--border-neutral-rgb'),
+          'border-structural': withOpacity('--border-structural-rgb'),
+          cyan: withOpacity('--color-cyan-rgb'),
+          'cyan-dim': 'rgba(var(--color-cyan-rgb), 0.15)',
+          yellow: withOpacity('--color-yellow-rgb'),
+          'yellow-hover': withOpacity('--color-yellow-hover-rgb'),
+          magenta: withOpacity('--color-magenta-rgb'),
+          green: withOpacity('--color-green-rgb'),
+          muted: withOpacity('--muted-text-rgb'),
+          body: withOpacity('--primary-body-text-rgb'),
+          heading: withOpacity('--pixel-heading-text-rgb'),
+          cta: withOpacity('--action-accent-rgb'),
+          'cta-hover': withOpacity('--action-hover-rgb'),
+          input: withOpacity('--input-field-fill-rgb'),
+          'input-inactive': withOpacity('--input-inactive-fill-rgb'),
+          rivet: withOpacity('--corner-rivet-rgb'),
         },
       },
       fontFamily: {
@@ -29,9 +47,9 @@ export default {
       boxShadow: {
         'retro-yellow': '4px 4px 0px 0px #000000',
         'retro-yellow-sm': '2px 2px 0px 0px #000000',
-        'retro-cyan': '4px 4px 0px 0px #000000, 0 0 15px rgba(0, 240, 255, 0.3)',
-        'retro-magenta': '4px 4px 0px 0px #000000, 0 0 15px rgba(255, 0, 127, 0.3)',
-        'hard-dark': '5px 5px 0px 0px #000000',
+        'retro-cyan': '4px 4px 0px 0px #000000, 0 0 15px rgba(var(--color-cyan-rgb), 0.3)',
+        'retro-magenta': '4px 4px 0px 0px #000000, 0 0 15px rgba(var(--color-magenta-rgb), 0.3)',
+        'hard-dark': '4px 4px 0px 0px #000000',
       },
       borderWidth: {
         '3': '3px',

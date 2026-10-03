@@ -23,13 +23,13 @@ export const StorySection: React.FC<StorySectionProps> = ({ experience }) => {
 
   return (
     <section className="p-6 sm:p-8 space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-retro-border pb-3">
         <div>
           <h2 className="font-mono font-bold text-lg text-retro-cyan uppercase tracking-wider flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-retro-yellow" />
             NARRATIVE IMPACT ENGINE (STAR METHODOLOGY)
           </h2>
-          <p className="text-xs text-slate-400 font-mono">
+          <p className="text-xs text-retro-muted font-mono">
             Outcome &rarr; Obstacle &rarr; Solution structured career milestones
           </p>
         </div>
@@ -48,12 +48,12 @@ export const StorySection: React.FC<StorySectionProps> = ({ experience }) => {
           >
             <div className="space-y-4">
               {/* Timeline Header Badge */}
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 border-b border-slate-800 pb-2">
+              <div className="flex items-center gap-2 text-xs font-mono text-retro-muted border-b border-retro-border pb-2">
                 <span className="text-retro-yellow font-bold">ORGANIZATION:</span>
-                <span className="text-slate-200">{exp.company}</span>
-                <span className="text-slate-600">|</span>
+                <span className="text-retro-body font-semibold">{exp.company}</span>
+                <span className="text-retro-muted">|</span>
                 <span className="text-retro-cyan font-bold">DURATION:</span>
-                <span className="text-slate-300">{exp.duration}</span>
+                <span className="text-retro-body">{exp.duration}</span>
               </div>
 
               {/* Grid of Outcome -> Obstacle -> Solution Cards */}
@@ -64,7 +64,7 @@ export const StorySection: React.FC<StorySectionProps> = ({ experience }) => {
                   return (
                     <div
                       key={bIdx}
-                      className="bg-retro-panel border border-slate-800 hover:border-retro-cyan/60 p-3 rounded transition-all flex flex-col justify-between group"
+                      className="bg-retro-panel border border-retro-border hover:border-retro-cyan/60 p-3 rounded transition-all flex flex-col justify-between group"
                     >
                       <div className="space-y-2">
                         {/* Outcome Tag */}
@@ -73,24 +73,24 @@ export const StorySection: React.FC<StorySectionProps> = ({ experience }) => {
                             <Target className="w-3 h-3" /> OUTCOME
                           </span>
                           {story.metric && (
-                            <span className="px-1.5 py-0.5 bg-yellow-950/80 border border-retro-yellow text-retro-yellow font-mono text-[10px] font-bold">
+                            <span className="px-1.5 py-0.5 bg-amber-100 text-[#CA8A04] border border-[#EAB308] dark:bg-yellow-950/80 dark:border-retro-yellow dark:text-retro-yellow font-mono text-[10px] font-bold">
                               {story.metric} IMPACT
                             </span>
                           )}
                         </div>
 
                         {/* Story Content */}
-                        <p className="font-mono text-xs text-slate-200 leading-relaxed">
+                        <p className="font-mono text-xs text-retro-body leading-relaxed">
                           {bullet}
                         </p>
                       </div>
 
                       {/* Technical Execution Vector */}
-                      <div className="pt-2 mt-2 border-t border-slate-800/80 flex items-center gap-2 text-[10px] font-mono text-slate-400">
+                      <div className="pt-2 mt-2 border-t border-retro-border/80 flex items-center gap-2 text-[10px] font-mono text-retro-muted">
                         <span className="text-retro-cyan flex items-center gap-0.5">
                           <Zap className="w-3 h-3" /> Solution
                         </span>
-                        <ArrowRight className="w-2.5 h-2.5 text-slate-600" />
+                        <ArrowRight className="w-2.5 h-2.5 text-retro-muted" />
                         <span className="text-retro-green flex items-center gap-0.5">
                           <ShieldCheck className="w-3 h-3" /> Verified
                         </span>

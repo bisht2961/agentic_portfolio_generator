@@ -82,6 +82,98 @@ export const Canvas: React.FC = () => {
     }
   };
 
+  // Prepare sandbox HTML with safe internal anchor scrolling and external link handling
+  const sandboxHtml = React.useMemo(() => {
+    if (!portfolio?.html_code) return '';
+
+    const navigationScript = `
+<script>
+  (function() {
+    // Intercept clicks on anchor tags to prevent iframe from navigating to parent app URL
+    document.addEventListener('click', function(event) {
+      var anchor = event.target && event.target.closest ? event.target.closest('a') : null;
+      if (!anchor) return;
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+
+      // Handle in-page anchor links (e.g. #about, #skills, #experience, #projects, #)
+      if (href.startsWith('#')) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (href === '#' || href === '') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          var targetId = href.slice(1);
+          var targetEl = document.getElementById(targetId);
+          if (!targetEl) {
+            try {
+              targetEl = document.querySelector(href);
+            } catch (e) {
+              // Ignore invalid selector syntax
+            }
+          }
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      } else if (href.startsWith('http://') || href.startsWith('https://')) {
+        // Ensure external links open safely in a new tab without navigating sandbox
+        anchor.setAttribute('target', '_blank');
+        anchor.setAttribute('rel', 'noopener noreferrer');
+      }
+    }, true);
+  })();
+</script>
+`;
+
+    if (portfolio.html_code.includes('</body>')) {
+      return portfolio.html_code.replace('</body>', `${navigationScript}</body>`);
+    }
+    return portfolio.html_code + navigationScript;
+  }, [portfolio?.html_code]);
+
+  const handleIframeLoad = (e: React.SyntheticEvent<HTMLIFrameElement>) => {
+    try {
+      const iframeDoc = e.currentTarget.contentDocument;
+      if (!iframeDoc) return;
+      iframeDoc.addEventListener(
+        'click',
+        (event) => {
+          const target = event.target as HTMLElement | null;
+          const anchor = target?.closest?.('a');
+          if (!anchor) return;
+          const href = anchor.getAttribute('href');
+          if (!href) return;
+
+          if (href.startsWith('#')) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (href === '#' || href === '') {
+              iframeDoc.defaultView?.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              const targetId = href.slice(1);
+              const targetEl =
+                iframeDoc.getElementById(targetId) ||
+                (function () {
+                  try {
+                    return iframeDoc.querySelector(href);
+                  } catch {
+                    return null;
+                  }
+                })();
+              if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          }
+        },
+        true
+      );
+    } catch {
+      // Ignore cross-origin errors if any
+    }
+  };
+
   return (
     <div className="border-2 border-retro-cyan bg-retro-surface rounded-sm shadow-retro-cyan overflow-hidden flex flex-col">
       {/* Canvas Top Control Bar */}
@@ -92,8 +184,8 @@ export const Canvas: React.FC = () => {
             onClick={() => setViewMode('interactive')}
             className={`px-3 py-1 text-xs font-mono font-bold flex items-center gap-1.5 border transition-all ${
               viewMode === 'interactive'
-                ? 'bg-retro-yellow text-black border-black shadow-retro-yellow-sm'
-                : 'border-slate-700 text-slate-300 hover:border-slate-500 bg-retro-surface'
+                ? 'bg-retro-yellow text-black border-retro-border shadow-retro-yellow-sm'
+                : 'border-retro-border text-retro-muted hover:border-retro-cyan bg-retro-surface'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -104,8 +196,8 @@ export const Canvas: React.FC = () => {
             onClick={() => setViewMode('sandbox')}
             className={`px-3 py-1 text-xs font-mono font-bold flex items-center gap-1.5 border transition-all ${
               viewMode === 'sandbox'
-                ? 'bg-retro-cyan text-black border-black shadow-retro-yellow-sm'
-                : 'border-slate-700 text-slate-300 hover:border-slate-500 bg-retro-surface'
+                ? 'bg-retro-cyan text-white dark:text-black border-retro-border shadow-retro-yellow-sm'
+                : 'border-retro-border text-retro-muted hover:border-retro-cyan bg-retro-surface'
             }`}
           >
             <Monitor className="w-3.5 h-3.5" />
@@ -116,8 +208,8 @@ export const Canvas: React.FC = () => {
             onClick={() => setViewMode('code')}
             className={`px-3 py-1 text-xs font-mono font-bold flex items-center gap-1.5 border transition-all ${
               viewMode === 'code'
-                ? 'bg-retro-magenta text-white border-black shadow-retro-yellow-sm'
-                : 'border-slate-700 text-slate-300 hover:border-slate-500 bg-retro-surface'
+                ? 'bg-retro-magenta text-white border-retro-border shadow-retro-yellow-sm'
+                : 'border-retro-border text-retro-muted hover:border-retro-cyan bg-retro-surface'
             }`}
           >
             <Code2 className="w-3.5 h-3.5" />
@@ -127,13 +219,13 @@ export const Canvas: React.FC = () => {
 
         {/* Center: Device Switchers (for sandbox mode) */}
         {viewMode === 'sandbox' && (
-          <div className="flex items-center gap-1 bg-black/40 border border-slate-700 p-0.5 rounded">
+          <div className="flex items-center gap-1 bg-retro-input-inactive border border-retro-border p-0.5 rounded">
             <button
               onClick={() => setDeviceWidth('desktop')}
               className={`p-1 rounded ${
                 deviceWidth === 'desktop'
-                  ? 'bg-retro-cyan text-black'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-retro-cyan text-white dark:text-black'
+                  : 'text-retro-muted hover:text-retro-body'
               }`}
               title="Desktop View"
             >
@@ -143,8 +235,8 @@ export const Canvas: React.FC = () => {
               onClick={() => setDeviceWidth('tablet')}
               className={`p-1 rounded ${
                 deviceWidth === 'tablet'
-                  ? 'bg-retro-cyan text-black'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-retro-cyan text-white dark:text-black'
+                  : 'text-retro-muted hover:text-retro-body'
               }`}
               title="Tablet View"
             >
@@ -154,8 +246,8 @@ export const Canvas: React.FC = () => {
               onClick={() => setDeviceWidth('mobile')}
               className={`p-1 rounded ${
                 deviceWidth === 'mobile'
-                  ? 'bg-retro-cyan text-black'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-retro-cyan text-white dark:text-black'
+                  : 'text-retro-muted hover:text-retro-body'
               }`}
               title="Mobile View"
             >
@@ -168,7 +260,7 @@ export const Canvas: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopyCode}
-            className="px-2.5 py-1 text-xs font-mono border border-slate-700 hover:border-retro-cyan text-slate-300 hover:text-retro-cyan bg-retro-surface flex items-center gap-1.5"
+            className="px-2.5 py-1 text-xs font-mono border border-retro-border hover:border-retro-cyan text-retro-muted hover:text-retro-cyan bg-retro-surface flex items-center gap-1.5"
             title="Copy HTML"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-retro-green" /> : <Copy className="w-3.5 h-3.5" />}
@@ -177,7 +269,7 @@ export const Canvas: React.FC = () => {
 
           <button
             onClick={handleDownload}
-            className="px-2.5 py-1 text-xs font-mono border border-retro-yellow bg-retro-yellow text-black font-bold hover:bg-yellow-400 flex items-center gap-1.5 shadow-retro-yellow-sm active:translate-x-0.5 active:translate-y-0.5"
+            className="px-2.5 py-1 text-xs font-mono border border-retro-border bg-retro-yellow text-black font-bold hover:bg-retro-yellow-hover flex items-center gap-1.5 shadow-retro-yellow-sm active:translate-x-0.5 active:translate-y-0.5"
             title="Download Standalone HTML"
           >
             <Download className="w-3.5 h-3.5" />
@@ -186,7 +278,7 @@ export const Canvas: React.FC = () => {
 
           <button
             onClick={handleOpenNewTab}
-            className="p-1 text-slate-400 hover:text-retro-cyan border border-slate-700 bg-retro-surface"
+            className="p-1 text-retro-muted hover:text-retro-cyan border border-retro-border bg-retro-surface"
             title="Open In New Window"
           >
             <ExternalLink className="w-4 h-4" />
@@ -204,12 +296,12 @@ export const Canvas: React.FC = () => {
             <ProjectGrid projects={portfolio.projects} />
 
             {/* Additional Info Footer */}
-            <div className="p-6 bg-retro-panel border-t border-slate-800 text-center space-y-2">
-              <p className="font-mono text-xs text-slate-400">
+            <div className="p-6 bg-retro-panel border-t border-retro-border text-center space-y-2">
+              <p className="font-mono text-xs text-retro-muted">
                 SEO Discovered Vectors: {portfolio.seo_keywords.join(' • ')}
               </p>
               {portfolio.review_notes && (
-                <p className="font-mono text-xs text-retro-green/80 italic">
+                <p className="font-mono text-xs text-retro-green italic">
                   QA Auditor: {portfolio.review_notes}
                 </p>
               )}
@@ -236,9 +328,10 @@ export const Canvas: React.FC = () => {
               </div>
               <iframe
                 title="Generated Portfolio HTML Sandbox"
-                srcDoc={portfolio.html_code}
+                srcDoc={sandboxHtml}
                 className="w-full h-[700px] border-0"
-                sandbox="allow-scripts allow-same-origin"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                onLoad={handleIframeLoad}
               />
             </div>
           </div>

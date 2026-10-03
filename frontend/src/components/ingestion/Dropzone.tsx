@@ -83,8 +83,8 @@ export const Dropzone: React.FC = () => {
             isDragOver
               ? 'border-retro-yellow bg-retro-yellow/10 shadow-retro-yellow-sm'
               : selectedFile
-              ? 'border-retro-green bg-emerald-950/20'
-              : 'border-slate-700 bg-retro-panel/70 hover:border-retro-cyan hover:bg-retro-panel'
+              ? 'border-retro-green bg-emerald-100/60 dark:bg-emerald-950/20'
+              : 'border-retro-border bg-retro-input-inactive/40 hover:border-retro-cyan hover:bg-retro-input/30'
           }`}
         >
           <input
@@ -99,11 +99,11 @@ export const Dropzone: React.FC = () => {
           {selectedFile ? (
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 text-left">
-                <div className="p-2.5 bg-emerald-950/60 border border-retro-green rounded">
+                <div className="p-2.5 bg-emerald-100 dark:bg-emerald-950/60 border border-retro-green rounded">
                   <FileText className="w-6 h-6 text-retro-green" />
                 </div>
                 <div>
-                  <p className="font-mono font-bold text-slate-100 text-sm truncate max-w-[200px] sm:max-w-xs">
+                  <p className="font-mono font-bold text-retro-body text-sm truncate max-w-[200px] sm:max-w-xs">
                     {selectedFile.name}
                   </p>
                   <p className="text-xs text-retro-green font-mono">
@@ -117,7 +117,7 @@ export const Dropzone: React.FC = () => {
                     e.stopPropagation();
                     setSelectedFile(null);
                   }}
-                  className="p-1 hover:bg-slate-800 rounded border border-transparent hover:border-slate-600 text-slate-400 hover:text-slate-200"
+                  className="p-1 hover:bg-retro-panel rounded border border-transparent hover:border-retro-border text-retro-muted hover:text-retro-body"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -125,13 +125,13 @@ export const Dropzone: React.FC = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2">
-              <div className="p-3 bg-retro-surface border border-slate-700 rounded-full text-retro-cyan">
+              <div className="p-3 bg-retro-surface border border-retro-border rounded-full text-retro-cyan">
                 <Upload className="w-6 h-6 animate-pulse" />
               </div>
-              <p className="font-mono text-sm font-bold text-slate-200">
+              <p className="font-mono text-sm font-bold text-retro-body">
                 DRAG & DROP RESUME PDF HERE
               </p>
-              <p className="text-xs text-slate-400 font-mono">
+              <p className="text-xs text-retro-muted font-mono">
                 or click to browse from your filesystem (max 10MB)
               </p>
             </div>
@@ -149,7 +149,7 @@ export const Dropzone: React.FC = () => {
             onChange={(e) => setTargetRole(e.target.value)}
             placeholder="e.g. Full Stack Developer, AI Engineer"
             disabled={isBusy}
-            className="w-full bg-retro-panel border border-slate-700 focus:border-retro-cyan px-3 py-2 text-sm font-mono text-slate-100 focus:outline-none rounded-none"
+            className="w-full bg-retro-input-inactive focus:bg-retro-input border border-retro-border focus:border-retro-cyan px-3 py-2 text-sm font-mono text-retro-body placeholder:text-retro-muted/60 focus:outline-none rounded-none transition-colors"
           />
           {/* Quick role tags */}
           <div className="flex flex-wrap gap-1.5 pt-1">
@@ -161,8 +161,8 @@ export const Dropzone: React.FC = () => {
                 disabled={isBusy}
                 className={`text-[10px] font-mono px-2 py-0.5 border transition-all ${
                   targetRole === role
-                    ? 'border-retro-yellow text-retro-yellow bg-yellow-950/40'
-                    : 'border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+                    ? 'border-retro-yellow text-retro-body bg-retro-yellow/30 font-bold'
+                    : 'border-retro-border text-retro-muted hover:border-retro-cyan hover:text-retro-body bg-retro-input-inactive/40'
                 }`}
               >
                 {role}
@@ -185,8 +185,8 @@ export const Dropzone: React.FC = () => {
                 disabled={isBusy}
                 className={`text-xs font-mono py-1.5 px-2.5 text-left border flex items-center justify-between transition-all ${
                   themePreference === theme.id
-                    ? 'border-retro-cyan text-retro-cyan bg-cyan-950/40 font-bold'
-                    : 'border-slate-700 text-slate-400 hover:border-slate-600'
+                    ? 'border-retro-cyan text-retro-cyan bg-retro-input font-bold'
+                    : 'border-retro-border text-retro-muted hover:border-retro-cyan bg-retro-input-inactive/40'
                 }`}
               >
                 <span>{theme.label}</span>
@@ -199,7 +199,7 @@ export const Dropzone: React.FC = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="pt-2 border-t border-slate-800 flex flex-col sm:flex-row gap-2">
+        <div className="pt-2 border-t border-retro-border flex flex-col sm:flex-row gap-2">
           {isBusy ? (
             <RetroButton
               variant="magenta"
@@ -235,7 +235,7 @@ export const Dropzone: React.FC = () => {
               onClick={resetPipeline}
               disabled={isBusy}
               title="Reset state"
-              className="px-3 border-2 border-slate-700 text-slate-400 hover:text-slate-200 hover:border-slate-500 bg-retro-panel"
+              className="px-3 border-2 border-retro-border text-retro-muted hover:text-retro-body hover:border-retro-cyan bg-retro-panel"
             >
               <RefreshCw className="w-4 h-4" />
             </button>

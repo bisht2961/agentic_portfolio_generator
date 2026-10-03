@@ -17,13 +17,13 @@ interface ProjectGridProps {
 export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
   return (
     <section className="p-6 sm:p-8 space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-retro-border pb-3">
         <div>
           <h2 className="font-mono font-bold text-lg text-retro-cyan uppercase tracking-wider flex items-center gap-2">
             <FolderGit2 className="w-5 h-5 text-retro-yellow" />
             ENGINEERING SHOWCASE (BENTO MATRIX)
           </h2>
-          <p className="text-xs text-slate-400 font-mono">
+          <p className="text-xs text-retro-muted font-mono">
             Featured architectures, production deployments & impact metrics
           </p>
         </div>
@@ -48,7 +48,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
                       href={project.live_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1 text-slate-300 hover:text-retro-cyan"
+                      className="p-1 text-retro-muted hover:text-retro-cyan"
                       title="Live Demo"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -59,7 +59,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
                       href={project.github_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1 text-slate-300 hover:text-retro-cyan"
+                      className="p-1 text-retro-muted hover:text-retro-cyan"
                       title="Source Code"
                     >
                       <GithubIcon className="w-3.5 h-3.5" />
@@ -71,18 +71,18 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
             >
               <div className="space-y-4">
                 {/* Description */}
-                <p className="font-mono text-xs text-slate-300 leading-relaxed">
+                <p className="font-mono text-xs text-retro-body leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Key Metrics and Impact (STAR) */}
                 {project.key_metrics_and_impact && project.key_metrics_and_impact.length > 0 && (
-                  <div className="space-y-2 bg-black/40 p-3 rounded border border-slate-800">
+                  <div className="space-y-2 bg-retro-input-inactive/40 dark:bg-black/40 p-3 rounded border border-retro-border">
                     <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold text-retro-yellow uppercase">
                       <Sparkles className="w-3 h-3" />
                       Key Metrics & Impact:
                     </div>
-                    <ul className="space-y-1.5 font-mono text-xs text-slate-300">
+                    <ul className="space-y-1.5 font-mono text-xs text-retro-body">
                       {project.key_metrics_and_impact.map((metric, mIdx) => (
                         <li key={mIdx} className="flex items-start gap-2">
                           <CheckCircle className="w-3.5 h-3.5 text-retro-green shrink-0 mt-0.5" />
@@ -105,8 +105,8 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
                 )}
 
                 {/* Action Links */}
-                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
-                  <span className="text-[10px] text-slate-500 uppercase">
+                <div className="pt-2 border-t border-retro-border flex items-center justify-between text-xs font-mono">
+                  <span className="text-[10px] text-retro-muted uppercase">
                     Status: Production Ready
                   </span>
                   <div className="flex items-center gap-2">
@@ -114,8 +114,8 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
                       href={project.github_url || '#'}
                       className={`px-2 py-1 text-[11px] font-bold border transition-colors ${
                         project.github_url
-                          ? 'border-slate-600 text-slate-200 hover:border-retro-cyan hover:text-retro-cyan'
-                          : 'border-slate-800 text-slate-600 cursor-not-allowed'
+                          ? 'border-retro-border text-retro-body hover:border-retro-cyan hover:text-retro-cyan'
+                          : 'border-retro-border/50 text-retro-muted cursor-not-allowed'
                       }`}
                       onClick={(e) => !project.github_url && e.preventDefault()}
                     >
@@ -126,7 +126,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
                       className={`px-2 py-1 text-[11px] font-bold border transition-colors ${
                         project.live_url
                           ? 'border-retro-yellow text-retro-yellow hover:bg-retro-yellow hover:text-black'
-                          : 'border-slate-800 text-slate-600 cursor-not-allowed'
+                          : 'border-retro-border/50 text-retro-muted cursor-not-allowed'
                       }`}
                       onClick={(e) => !project.live_url && e.preventDefault()}
                     >
